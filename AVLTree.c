@@ -247,12 +247,8 @@ int findRemove(Node * node, void * key, Tree * tree) {
 		}
 	}
 	
-	if (newHeight <= node->height &&
-		(newHeight > (node->left ? node->left->height : -1) ||
-		newHeight > (node->right ? node->right->height : -1))) {
-		node->height = newHeight;
-		keepBalanced(node, key, tree, 1);
-	}
+	adjustHeight(node);
+	keepBalanced(node, key, tree, 1);
 	
 	return node->height;
 }
@@ -263,22 +259,16 @@ void * yank(int getMinMax, Node * node, int * newHeight, Tree * tree) {
 	if (getMinMax == MIN) {
 		if (node->left) {
 			void * yankThis = yank(MIN, node->left, newHeight, tree);
-			if (*newHeight <= node->height &&
-				*newHeight > (node->right ? node->right->height : -1)) {
-				node->height = *newHeight;
-				keepBalanced(node, yankThis, tree, 1);
-			}
+			adjustHeight(node);
+			keepBalanced(node, yankThis, tree, 1);
 			*newHeight = node->height;
 			return yankThis;
 		}
 	} else {
 		if (node->right) {
 			void * yankThis = yank(MAX, node->right, newHeight, tree);
-			if (*newHeight <= node->height &&
-				*newHeight > (node->right ? node->right->height : -1)) {
-				node->height = *newHeight;
-				keepBalanced(node, yankThis, tree, 1);
-			}
+			adjustHeight(node);
+			keepBalanced(node, yankThis, tree, 1);
 			*newHeight = node->height;
 			return yankThis;
 		}

@@ -28,8 +28,8 @@ AVL Tree (C) - Shawn Hustins
 	log2(n) + 1 where n is the logical size of the tree. The important AVL tree
 	invariant is that each node will never have a height difference of more than
 	1 between each child (height is defined by longest path to leaves), meaning
-	that the maximum depth can only ever be at most 1 greater than all other
-	leaves.
+	that the maximum depth can only ever be at most 1 greater than another leaf
+	in the branch.
 	
 **********
 2.0 Usage:
@@ -192,14 +192,22 @@ Reference Example:
 		if ((log10(tree.size) / log10(2.0)) + 1 > height)
 			// not balanced
 			
-*********
-3.2 Bugs:
-*********
+**************
+3.2 Changelog:
+**************
+
+Version 1.0:
 
 	There is still at least one and the code is still a little messy. I have yet
 	to pin point the bug but it involves some sort of self referential set of
 	nodes, which cause infinite recursion when accessed. The bug is somewhere in
 	the removal procedures.
+	
+Version 1.1:
+
+	Bugs from 1.0 were removed. More accurate height tracking upon list updates,
+	namely removals, has been implemented. A couple odd balancing behaviours are
+	still present.
 			
 ***************
 4.0 References:

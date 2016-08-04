@@ -47,7 +47,7 @@ int main(int argc, char * argv[]) {
 	}
 	
 	printf("\n-------------------------------------------------------------\n"
-		   "Test removlals from AVL tree.\n"
+		   "Test removals from AVL tree.\n"
 		   "-------------------------------------------------------------\n\n");
 	
 	for (int i = 1; i < argc; ++i) {
@@ -74,6 +74,8 @@ error:
 		   "Tests aborting after error.\n"
 		   "-------------------------------------------------------------\n\n");
 
+	destroyTree(&tree);
+	
 	return -1;
 }
 
